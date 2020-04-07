@@ -3,11 +3,9 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 import Drawer from "@material-ui/core/Drawer";
 import Hidden from "@material-ui/core/Hidden";
-import Avatar from "@material-ui/core/Avatar";
 import { withStyles } from "@material-ui/core/styles";
 
 import Menus from "./Menus";
-import data from "../data";
 
 const drawStyles = theme => {
   return {
@@ -70,10 +68,8 @@ const LeftDrawer = props => {
 
   const drawerContent = () => (
     <div>
-      <div className={classes.logo}>Material Admin</div>
+      <div className={classes.logo}>ACH Demo</div>
       <div className={classNames(classes.avatarRoot, !navDrawerOpen && classes.avatarRootMini)}>
-        <Avatar src={data.user.avatar} size={navDrawerOpen ? 48 : 32} classes={{ root: classes.avatarIcon }} />
-        <span className={classes.avatarSpan}>{data.user.userName}</span>
       </div>
       <Menus menus={props.menus} navDrawerOpen={navDrawerOpen} />
     </div>

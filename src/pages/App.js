@@ -10,8 +10,15 @@ import Data from "../data";
 import Dashboard from "./DashboardPage";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import Form from "./FormPage";
+
 import BasicTable from "./Table/BasicTables";
 import DataTable from "./Table/DataTables";
+import Depositories from "./Depositories/Depositories.js";
+import Originators from "./Originators/Originators.js";
+import Receivers from "./Receivers/Receivers.js";
+import Transfers from "./Transfers/Transfers.js";
+import TransferForm from "./Transfers/Form.js";
+import Settings from "./Settings.js";
 import NotFound from "./NotFoundPage";
 import { ThemeProvider } from "@material-ui/core/styles";
 import defaultTheme, { customTheme } from "../theme";
@@ -119,6 +126,12 @@ class App extends React.Component {
             <Route path="/form" component={Form} />
             <Route path="/table/basic" component={BasicTable} />
             <Route path="/table/data" component={DataTable} />
+            <Route path="/depositories" component={Depositories} />
+            <Route path="/originators" component={Originators} />
+            <Route path="/receivers" component={Receivers} />
+            <Route path="/transfers" component={Transfers} />
+            <Route path="/settings" component={Settings} />
+            <Route path="/transferscreate" component={TransferForm} />
             <Route component={NotFound} />
           </Switch>
         </div>

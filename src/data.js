@@ -1,34 +1,21 @@
 import React from "react";
 import Faker from "faker";
-import Assessment from "@material-ui/icons/Assessment";
-import GridOn from "@material-ui/icons/GridOn";
-import PermIdentity from "@material-ui/icons/PermIdentity";
-import Web from "@material-ui/icons/Web";
-import BorderClear from "@material-ui/icons/BorderClear";
-import BorderOuter from "@material-ui/icons/BorderOuter";
+import 'axios';
+import AccountBalance from "@material-ui/icons/AccountBalance";
+import Payment from "@material-ui/icons/Payment";
+import SystemUpdateAlt from "@material-ui/icons/SystemUpdateAlt";
+import Launch from "@material-ui/icons/Launch";
+import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
 
 const data = {
   menus: [
-    { text: "DashBoard", icon: <Assessment />, link: "/dashboard" },
-    { text: "Form Page", icon: <Web />, link: "/form" },
-    {
-      text: "Table Page",
-      icon: <GridOn />,
-      // link: "/table",
-      subMenus: [
-        {
-          text: "Basic Table",
-          icon: <BorderClear />,
-          link: "/table/basic"
-        },
-        {
-          text: "Data Table",
-          icon: <BorderOuter />,
-          link: "/table/data"
-        }
-      ]
-    },
-    { text: "Login Page", icon: <PermIdentity />, link: "/login" }
+    //{ text: "DashBoard", icon: <Assessment />, link: "/dashboard" },
+    //{ text: "Form Page", icon: <Web />, link: "/form" },
+    { text: "Depositories", icon: <AccountBalance />, link: "/depositories" },
+    { text: "Originators", icon: <Launch />, link: "/originators" },
+    { text: "Receivers", icon: <SystemUpdateAlt />, link: "/receivers" },
+    { text: "Transfers", icon: <Payment />, link: "/transfers" },
+    { text: "Settings", icon: <SettingsApplicationsIcon />, link: "/settings" }
   ],
   user: {
     userName: `${Faker.name.firstName()} ${Faker.name.lastName()}`,
