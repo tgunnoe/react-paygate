@@ -80,24 +80,34 @@ class EnhancedTable extends React.Component {
   };
   async getData() {
     var res = await axios.get(
-      '/transfers',
-      { headers: {'x-user-id': 'taylor'}
-      });
+      '/originators',
+      { headers: {'x-user-id': 'taylor'} });
     if (res.status === 200) {
       console.log(res.status);
       console.log(res.data);
-      // var res2 = await axios.get(
-      //   '/transfers',
-      //   { headers: {'x-user-id': 'taylor'} }
-      // );
-      // if (res2.status === 200) {
-      //   console.log(res2.status, res2.data);
-      //   for (var i = 0; i < res2.data.length; i++)
-      //     if(res2.data[i][res.id] === )
-      //}
-      //res.data['defaultDepository']
+      var res3 = await axios.get(
+        '/receivers',
+        { headers: {'x-user-id': 'taylor'} });
+      if (res3.status === 200) {
+        var res2 = await axios.get(
+          '/transfers',
+          { headers: {'x-user-id': 'taylor'} });
+        if (res2.status === 200) {
+          //console.log(res2.status, res2.data);
+
+          for (var i = 0; i < res2.data.length; i++){
+            //console.log(res2.data[i].originator);
+            res2.data[i].originator =
+              res.data.find(o => o.id === res2.data[i].originator).identification;
+            res2.data[i].receiver =
+            res3.data.find(o => o.id === res2.data[i].receiver).metadata;
+        }
+        console.log(res2.data);
+      }
+
+      }
     }
-    return res.data;
+    return res2.data;
   }
   componentDidMount() {
     if (this.state.data) {

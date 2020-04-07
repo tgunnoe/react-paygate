@@ -63,7 +63,7 @@ class EnhancedTable extends React.Component {
     selected: [],
     data: [],
     page: 0,
-    rowsPerPage: 15
+    rowsPerPage: 10
   };
 
   async getData() {

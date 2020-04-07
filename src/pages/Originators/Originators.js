@@ -67,26 +67,27 @@ class EnhancedTable extends React.Component {
   };
 
   async getData() {
-    const res = await axios.get(
-      '/originators',
-      { headers: {'x-user-id': 'taylor'}
-      });
+    var res = await axios.get(
+      '/depositories',
+      { headers: {'x-user-id': 'taylor'} });
     if (res.status === 200) {
-      console.log(res.status);
-      console.log(res.data);
-      res.data.forEach(async function(i, index){
-        console.log(i.defaultDepository);
-        i.defaultDepository = await axios.get(
-          '/depositories/' + i.defaultDepository,
-          { headers: {'x-user-id': 'taylor'}})
-            .then(res => res.data.metadata + ' (' + res.data.bankName + ' Acc # '+ res.data.accountNumber + ')')
-            .catch(err => console.error(err));
-        console.log(i.defaultDepository);
-      });
+      var res2 = await axios.get(
+          '/originators',
+          { headers: {'x-user-id': 'taylor'} });
+        if (res2.status === 200) {
+
+          for (var i = 0; i < res2.data.length; i++){
+            //console.log(res2.data[i].originator);
+            let dep = res.data.find(o => o.id === res2.data[i].defaultDepository);
+            res2.data[i].defaultDepository =
+              dep.bankName + ' (' + 'Account # ' + dep.accountNumber + ')';
+          }
+          console.log(res2.data);
+        }
       //console.log(res.data[res.data.findIndex(x => x.name == )]);
 
     }
-    return res.data;
+    return res2.data;
   }
   componentDidMount() {
     if (this.state.data) {
