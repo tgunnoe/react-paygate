@@ -69,8 +69,7 @@ const LeftDrawer = props => {
   const drawerContent = () => (
     <div>
       <div className={classes.logo}>ACH Demo</div>
-      <div className={classNames(classes.avatarRoot, !navDrawerOpen && classes.avatarRootMini)}>
-      </div>
+
       <Menus menus={props.menus} navDrawerOpen={navDrawerOpen} />
     </div>
   );

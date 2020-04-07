@@ -12,6 +12,7 @@ import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import PageBase from "../../components/PageBase";
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import Asynchronous from "./AsyncDep";
 
 const axios = require('axios');
 const transX = 14;
@@ -50,17 +51,13 @@ const styles = {
     minWidth: 200
   }
 };
-class DepositoryEdit extends React.Component {
+class ReceiverEdit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       id: props.match.params.id,
-      bankName: '',
-      holder: '',
-      holderType: '',
-      type: '',
-      routingNumber: '',
-      accountNumber: '',
+      email: '',
+      defaultDepository: '',
       metadata: ''
     };
 
@@ -69,27 +66,24 @@ class DepositoryEdit extends React.Component {
     this.handleOriginator = this.handleOriginator.bind(this);
     this.handleReceiver = this.handleReceiver.bind(this);
     this.handleSelectChange = this.handleSelectChange.bind(this);
+    this.handleDepository = this.handleDepository.bind(this);
   }
   handleSubmit(event){
     event.preventDefault();
     console.log(this.state);
     axios({
       method: 'patch',
-      url: '/depositories/' + this.state.id,
+      url: '/receivers/' + this.state.id,
       data: {
-        bankName: this.state.bankName,
-        holder: this.state.holder,
-        holderType: this.state.holderType,
-        type: this.state.type,
-        routingNumber: this.state.routingNumber,
-        accountNumber: this.state.accountNumber,
+        email: this.state.email,
+        defaultDepository: this.state.defaultDepository,
         metadata: this.state.metadata
       },
       headers: {'x-user-id': 'taylor'}
     })
       .then(function(response) {
         console.log(response);
-         window.location = "/depositories"
+         window.location = "/receivers"
       });
   }
   handleSelectChange(event, value) {
@@ -108,6 +102,12 @@ class DepositoryEdit extends React.Component {
       this.setState({receiverDepository: event.currentTarget.dataset.depository});
 
   }
+  handleDepository( event, value ){
+    console.log(value);
+    this.setState({
+      defaultDepository: value.id,
+    });
+  }
   handleOriginator( event, value ){
     this.setState({
       originator: value.id,
@@ -123,7 +123,7 @@ class DepositoryEdit extends React.Component {
   async getData() {
     // Yeah this needs to come from an actual customer id
     const res = await axios.get(
-      '/depositories/' + this.state.id,
+      '/receivers/' + this.state.id,
       { headers: {'x-user-id': 'taylor'} });
     return await res.data;
   }
@@ -144,101 +144,32 @@ class DepositoryEdit extends React.Component {
   render() {
 
     return (
-      <PageBase title="Edit Depository" navigation="Depositories / Edit">
+      <PageBase title="Edit Receiver" navigation="Receiver / Edit">
 
         <form onSubmit={this.handleSubmit}>
-          <FormControl fullWidth={true} style={styles.formElement}>
-          <TextField
-            hintText="Bank Name"
-            label="Bank Name"
-            name="bankName"
-            fullWidth={false}
-            margin="normal"
-            style={{ width: 500 }}
-            defaultValue={this.state.bankName}
-            value={this.state.bankName}
-            onChange={this.handleInputChange}
-            variant="outlined"
-            />
-          </FormControl>
-          <FormControl fullWidth={true} style={styles.formElement}>
-          <TextField
-            hintText="Holder"
-            label="Account Holder"
-            name="holder"
-            fullWidth={false}
-            margin="normal"
-            style={{ width: 500 }}
-            defaultValue={this.state.holder}
-            value={this.state.holder}
-            onChange={this.handleInputChange}
-            variant="outlined"
-            />
-          </FormControl>
-
-          <FormControl fullWidth={true} style={styles.formElement}>
-            <Autocomplete
-              id="holder-type"
-              options={[
-                {name: "individual", state: "holderType", value: "individual"},
-                {name: "business", state: "holderType", value: "business"}
-              ]}
-              onChange={this.handleSelectChange}
-              getOptionLabel={(option) => option.name}
-              getOptionSelected={(option, value) => option.value === value.value}
-              value={{name: this.state.holderType, state: "holderType", value: this.state.holderType}}
-              style={{ width: 300 }}
-              renderInput={(params) => <TextField {...params} label="Holder Type" variant="outlined" />}
-              />
-          </FormControl>
-
-          <FormControl fullWidth={true} style={styles.formElement}>
-            <Autocomplete
-              id="account-type"
-              options={[
-                {name: "checking", state: "type", value: "checking"},
-                {name: "savings", state: "type", value: "savings"}
-              ]}
-              onChange={this.handleSelectChange}
-              getOptionLabel={(option) => option.name}
-              value={{name: this.state.type, state: "type", value: this.state.type}}
-              getOptionSelected={(option, value) => option.value === value.value}
-              style={{ width: 300 }}
-              renderInput={(params) => <TextField {...params} label="Account Type" variant="outlined" />}
-              />
-          </FormControl>
-
-          <FormControl fullWidth={true} style={styles.formElement}>
+        <FormControl fullWidth={true} style={styles.formElement}>
             <TextField
-              hintText="Routing Number"
-              label="Routing Number"
-              style={{ width: 300}}
-              inputProps={{
-                name: "routingNumber",
-                id: "routing-number"
-              }}
-              fullWidth={true}
+              hintText="Email Address"
+              label="Email Address"
+              name="email"
+              fullWidth={false}
               margin="normal"
-              variant="outlined"
-              value={this.state.routingNumber}
+              style={{ width: 500 }}
+      defaultValue={this.state.email}
+                    value={this.state.email}
               onChange={this.handleInputChange}
+              variant="outlined"
               />
           </FormControl>
 
           <FormControl fullWidth={true} style={styles.formElement}>
-            <TextField
-              hintText="Account Number"
-              label="Account Number"
-              style={{ width: 300}}
-              inputProps={{
-                name: "accountNumber",
-                id: "account-number"
-              }}
-              fullWidth={true}
-              margin="normal"
+            <Asynchronous
+              onChange={this.handleDepository}
+              url="/depositories"
+              id="depositories-selector"
+              label="Select a depository..."
               variant="outlined"
-              value={this.state.accountNumber}
-              onChange={this.handleInputChange}
+              width={400}
               />
           </FormControl>
 
@@ -252,17 +183,17 @@ class DepositoryEdit extends React.Component {
                 id: "metadata"
               }}
               fullWidth={true}
+              value={this.state.metadata}
               margin="normal"
               variant="outlined"
-              value={this.state.metadata}
               onChange={this.handleInputChange}
               />
           </FormControl>
 
-          <Divider style={styles.divider} />
+        <Divider style={styles.divider} />
 
           <div style={styles.buttons}>
-            <Link to="/depositories">
+            <Link to="/receivers">
               <Button variant="contained">Cancel</Button>
             </Link>
 
@@ -281,4 +212,4 @@ class DepositoryEdit extends React.Component {
     }
 };
 
-export default DepositoryEdit;
+export default ReceiverEdit;

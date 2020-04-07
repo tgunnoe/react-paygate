@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Switch, Route } from "react-router-dom";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
@@ -13,6 +13,7 @@ import Button from "@material-ui/core/Button";
 import ContentCreate from "@material-ui/icons/Create";
 import Fab from '@material-ui/core/Fab';
 import ContentAdd from "@material-ui/icons/Add";
+import DepositoryEdit from "./Edit.js";
 
 import EnhancedTableHead from "./DataTables/EnhancedTableHead";
 import EnhancedTableToolbar from "./DataTables/EnhancedTableToolbar";
@@ -149,7 +150,6 @@ class EnhancedTable extends React.Component {
   render() {
     const { classes } = this.props;
     const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
-
     return (
       <div>
         <Paper className={classes.root}>
@@ -190,7 +190,7 @@ class EnhancedTable extends React.Component {
                         <TableCell>{n.metadata}</TableCell>
                         <TableCell>{n.status}</TableCell>
                         <TableCell>
-                          <Link className="button" to="/form">
+                          <Link className="button" to={"/depositories/" + n.id}>
                             <Button mini={true} variant="fab" zDepth={0}>
                               <ContentCreate />
                             </Button>
@@ -226,7 +226,9 @@ class EnhancedTable extends React.Component {
         <ContentAdd />
         </Fab>
         </Link>
+
         </div>
+
     );
   }
 }

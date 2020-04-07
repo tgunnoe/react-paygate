@@ -203,7 +203,7 @@ class EnhancedTable extends React.Component {
                       <TableCell>{n.defaultDepository}</TableCell>
                       <TableCell>{n.metadata}</TableCell>
                       <TableCell>
-                        <Link className="button" to="/form">
+                        <Link className="button" to={"/originators/"+n.id}>
                           <Button mini={true} variant="fab" zDepth={0}>
                             <ContentCreate />
                           </Button>

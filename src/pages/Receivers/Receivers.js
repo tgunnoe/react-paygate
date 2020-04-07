@@ -205,7 +205,7 @@ class EnhancedTable extends React.Component {
                         <TableCell>{n.defaultDepository}</TableCell>
                         <TableCell>{n.status}</TableCell>
                         <TableCell>
-                          <Link className="button" to="/form">
+                          <Link className="button" to={"/receivers/"+n.id}>
                             <Button mini={true} variant="fab" zDepth={0}>
                               <ContentCreate />
                             </Button>
