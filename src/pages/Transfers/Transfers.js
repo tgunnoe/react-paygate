@@ -94,7 +94,7 @@ class EnhancedTable extends React.Component {
       //   console.log(res2.status, res2.data);
       //   for (var i = 0; i < res2.data.length; i++)
       //     if(res2.data[i][res.id] === )
-      }
+      //}
       //res.data['defaultDepository']
     }
     return res.data;
