@@ -86,13 +86,14 @@ class EnhancedTable extends React.Component {
     if (res.status === 200) {
       console.log(res.status);
       console.log(res.data);
-      var res2 = await axios.get(
-        '/originators',
-        { headers: {'x-user-id': 'taylor'} }
-      );
-      if (res2.status === 200) {
-        console.log(res2.status, res2.data);
-
+      // var res2 = await axios.get(
+      //   '/transfers',
+      //   { headers: {'x-user-id': 'taylor'} }
+      // );
+      // if (res2.status === 200) {
+      //   console.log(res2.status, res2.data);
+      //   for (var i = 0; i < res2.data.length; i++)
+      //     if(res2.data[i][res.id] === )
       }
       //res.data['defaultDepository']
     }
