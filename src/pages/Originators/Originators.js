@@ -11,6 +11,8 @@ import Paper from "@material-ui/core/Paper";
 import Checkbox from "@material-ui/core/Checkbox";
 import Button from "@material-ui/core/Button";
 import ContentCreate from "@material-ui/icons/Create";
+import Fab from '@material-ui/core/Fab';
+import ContentAdd from "@material-ui/icons/Add";
 
 import EnhancedTableHead from "./DataTables/EnhancedTableHead";
 import EnhancedTableToolbar from "./DataTables/EnhancedTableToolbar";
@@ -65,7 +67,16 @@ class EnhancedTable extends React.Component {
     page: 0,
     rowsPerPage: 10
   };
-
+  styles = {
+    floatingActionButton: {
+      margin: 0,
+      top: "auto",
+      right: 20,
+      bottom: 20,
+      left: "auto",
+      position: "fixed",
+    }
+  };
   async getData() {
     var res = await axios.get(
       '/depositories',
@@ -156,6 +167,7 @@ class EnhancedTable extends React.Component {
     const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
 
     return (
+      <div>
       <Paper className={classes.root}>
         <EnhancedTableToolbar numSelected={selected.length} />
         <div className={classes.tableWrapper}>
@@ -221,7 +233,13 @@ class EnhancedTable extends React.Component {
           onChangePage={this.handleChangePage}
           onChangeRowsPerPage={this.handleChangeRowsPerPage}
         />
-      </Paper>
+        </Paper>
+        <Link to="/originatorsadd">
+        <Fab color="primary" aria-label="add" style={this.styles.floatingActionButton}>
+        <ContentAdd />
+        </Fab>
+        </Link>
+        </div>
     );
   }
 }

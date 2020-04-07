@@ -14,8 +14,11 @@ import Form from "./FormPage";
 import BasicTable from "./Table/BasicTables";
 import DataTable from "./Table/DataTables";
 import Depositories from "./Depositories/Depositories.js";
+import DepositoriesForm from "./Depositories/Form.js";
 import Originators from "./Originators/Originators.js";
+import OriginatorsForm from "./Originators/Form.js";
 import Receivers from "./Receivers/Receivers.js";
+import ReceiversForm from "./Receivers/Form.js";
 import Transfers from "./Transfers/Transfers.js";
 import TransferForm from "./Transfers/Form.js";
 import Settings from "./Settings.js";
@@ -127,8 +130,11 @@ class App extends React.Component {
             <Route path="/table/basic" component={BasicTable} />
             <Route path="/table/data" component={DataTable} />
             <Route path="/depositories" component={Depositories} />
+            <Route path="/depositoriesadd" component={DepositoriesForm} />
             <Route path="/originators" component={Originators} />
+            <Route path="/originatorsadd" component={OriginatorsForm} />
             <Route path="/receivers" component={Receivers} />
+            <Route path="/receiversadd" component={ReceiversForm} />
             <Route path="/transfers" component={Transfers} />
             <Route path="/settings" component={Settings} />
             <Route path="/transferscreate" component={TransferForm} />
