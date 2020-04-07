@@ -15,7 +15,8 @@ const rows = [
   { id: "holder", numeric: true, disablePadding: false, label: "Holder" },
   { id: "holderType", numeric: false, disablePadding: false, label: "Holder Type" },
   { id: "metadata", numeric: false, disablePadding: false, label: "Metadata" },
-  { id: "status", numeric: false, disablePadding: false, label: "Status" }
+  { id: "status", numeric: false, disablePadding: false, label: "Status" },
+  { id: "edit", numeric: false, disablePadding: false, label: "" }
 ];
 
 class EnhancedTableHead extends React.Component {

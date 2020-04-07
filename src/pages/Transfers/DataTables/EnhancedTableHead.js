@@ -19,7 +19,8 @@ const rows = [
   { id: "transferType", numeric: false, disablePadding: false, label: "Type" },
   { id: "amount", numeric: false, disablePadding: false, label: "Amount" },
   { id: "standardEntryClassCode", numeric: false, disablePadding: false, label: "SEC Code" },
-  { id: "status", numeric: false, disablePadding: false, label: "Status" }
+  { id: "status", numeric: false, disablePadding: false, label: "Status" },
+  { id: "edit", numeric: false, disablePadding: false, label: "" }
 ];
 
 class EnhancedTableHead extends React.Component {
