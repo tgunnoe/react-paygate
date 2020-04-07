@@ -11,6 +11,7 @@ import Paper from "@material-ui/core/Paper";
 import Checkbox from "@material-ui/core/Checkbox";
 import Button from "@material-ui/core/Button";
 import ContentCreate from "@material-ui/icons/Create";
+import Fab from '@material-ui/core/Fab';
 
 import ContentAdd from "@material-ui/icons/Add";
 
@@ -174,8 +175,6 @@ class EnhancedTable extends React.Component {
   render() {
     const { classes } = this.props;
     const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
-    const emptyRows =
-      rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
     return (
       <div>
@@ -227,11 +226,10 @@ class EnhancedTable extends React.Component {
                     </TableRow>
                   );
                 })}
-              {emptyRows > 0 && (
-                <TableRow style={{ height: 49 * emptyRows }}>
+                <TableRow>
                   <TableCell colSpan={9} />
                 </TableRow>
-              )}
+
             </TableBody>
           </Table>
         </div>
@@ -252,9 +250,9 @@ class EnhancedTable extends React.Component {
         />
       </Paper>
       <Link to="/transferscreate">
-        <Button mini={true} variant="fab" style={this.styles.floatingActionButton} color="primary">
-          <ContentAdd />
-        </Button>
+        <Fab color="primary" aria-label="add" style={this.styles.floatingActionButton}>
+        <ContentAdd />
+        </Fab>
       </Link>
 
       </div>
