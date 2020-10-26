@@ -1,6 +1,6 @@
 # Moov Paygate Interface
 
-![React-PayGate](https://.gif)
+![React-PayGate](https://raw.githubusercontent.com/tgunnoe/react-paygate/master/paygate-react.gif)
 
 This is a demo frontend for Moov's PayGate, using React and Material UI.  Last tested with v0.8.0-rc1 of PayGate.
 
